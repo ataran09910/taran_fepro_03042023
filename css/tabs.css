@@ -1,15 +1,15 @@
 .wrapper{
-    /* min-height: 100%; - This needed */ 
+    /* min-height: 100%;  */
     position: relative;
     overflow: hidden;
+    padding: 40px;
 }
 
 .content{
     /* slightly move down the content with padding */
-    padding: 50px 0;
-    max-width: 1000px;
+    max-width: 90%;
     /* center conteiner with margin */
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 .tabs_container{
@@ -29,6 +29,7 @@
     text-transform: uppercase;
     color: aliceblue;
     text-decoration: none;
+    /* border: 1px solid #000000; */
 }
 .tab_item span{
     /* as we wrapped around the text we can forced it to be on top via z-index attribute */
@@ -41,6 +42,7 @@
 } */
 
 .tab_block{
+    /* border: 1px solid #000000; */
     position: relative;
     padding: 20px;
     font-size: 18px;
@@ -50,15 +52,15 @@
 
 /* refer to pseudo class of the element to change thier colors */
 .tab_block:nth-child(1) {
-    background-color: rgb(44, 12, 185);
+    background-color: #03a9f4;
 }
 
 .tab_block:nth-child(2) {
-    background-color: rgb(185, 12, 136);
+    background-color: #03a9f4;
 }
 
 .tab_block:nth-child(3) {
-    background-color: rgb(96, 150, 11);
+    background-color: #03a9f4;
 }
 /* target applies only to the block which linked to particular href value assigned to specific element, so it kinds link them */
 .tab_block:target{
@@ -72,15 +74,15 @@
     top: -50px;
 }
 .tab_block:nth-child(1):before{
-    background-color: rgb(44, 12, 185);
+    background-color: #03a9f4;
     left: 0;
 }
 .tab_block:nth-child(2):before{
-    background-color: rgb(185, 12, 136);
+    background-color: #03a9f4;
     left: 33.333%;
 }
 .tab_block:nth-child(3):before{
-    background-color: rgb(96, 150, 11);
+    background-color: #03a9f4;
     right: 0;
 }
 .generic_text{
