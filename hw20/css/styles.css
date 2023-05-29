@@ -1,0 +1,16 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#main_content {
+    display: flex;
+    justify-content: center;
+}
+
+#main_content button {
+    color: red;
+    background-color: black;
+    margin: 5px;
+    font-size: large;
+}
