@@ -1,0 +1,50 @@
+body {
+    background-color: rgb(125, 125, 125);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.emarket_root {
+    display: flex;
+    border: 1px solid black;
+    height: 500px;
+    justify-content: center;
+}
+
+#categories_block,
+#product_list_block,
+#product_info_block {
+    border: 2px solid burlywood;
+    box-sizing: 10px 10px;
+    width: 350px;
+}
+
+.block_header {
+    background-color: aqua;
+    font-weight: bolder;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    font-style: italic;
+}
+
+.items {
+    background-color: rgb(146, 255, 255);
+    font-style: normal;
+    font-weight: bold;
+    margin: 21px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.product_information {
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    margin: 21px;
+    padding: 20px;
+    border: 1px solid black;
+}
