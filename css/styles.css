@@ -1,7 +1,7 @@
 body {
     background-color: #212124; /* Not too dark */
     /* background-color: #161618; Darker ???  */
-    color: aliceblue;
+    color: rgb(215, 215, 215);
     font-family: 'Courier New', Courier, monospace;
     font-size: small;
 }
@@ -31,7 +31,7 @@ h1 {
 
 .content_header {
     background-color: rgb(119, 119, 119);
-    color: #ffffff;
+    color: #e7e7e7;
     text-align: center;
     width: 310px;
     border: 1px solid rgb(37, 37, 37);
