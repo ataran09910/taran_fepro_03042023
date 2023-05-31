@@ -1,7 +1,7 @@
 const productArticul = document.createElement('div')
 const productName = document.createElement('div')
 const productDescription = document.createElement('div')
-const buy = document.createElement('button')
+const buyProductButton = document.createElement('button')
 
 const createCategory = (category) => {
     const categoriesRootDiv = document.querySelector('#categories_block')
@@ -9,6 +9,7 @@ const createCategory = (category) => {
     categoryItem.classList.add('category_item', 'items')
     categoryItem.innerText = category
     categoriesRootDiv.appendChild(categoryItem)
+    categoryItem.addEventListener('click', populateProductList)
 }
 
 const createProduct = (productTitle) => {
@@ -17,6 +18,7 @@ const createProduct = (productTitle) => {
     productItem.classList.add('product_item', 'items')
     productItem.innerText = productTitle
     productListRootDiv.appendChild(productItem)
+    productItem.addEventListener('click', populateProductInfo)
 }
 
 const createProductInfo = (dataStoreObj) => {
@@ -31,40 +33,18 @@ const createProductInfo = (dataStoreObj) => {
     productDescription.classList.add('product_info_description', 'product_information')
     productDescription.innerText = dataStoreObj.description
 
-    buy.classList.add('buy_product')
-    buy.innerText = "Buy"
+    buyProductButton.classList.add('buy_product', 'product_information')
+    buyProductButton.innerText = "Buy"
 
     productRootDiv.appendChild(productArticul)
     productRootDiv.appendChild(productName)
     productRootDiv.appendChild(productDescription)
-    productRootDiv.appendChild(buy)
+    productRootDiv.appendChild(buyProductButton)
+    buyProductButton.addEventListener('click', buyProduct)
 }
 
-const deleteProductInfo = () => {
-    const productRootDiv = document.querySelector('#product_info_block');
-    productRootDiv.removeChild(productArticul);
-    productRootDiv.removeChild(productName);
-    productRootDiv.removeChild(productDescription);
-    productRootDiv.removeChild(buy);
-
+function deleteProductInfo () {
+    document.querySelectorAll('.category_item').forEach(item => item.remove())
     document.querySelectorAll('.product_item').forEach(item => item.remove())
-
-    const categories = document.querySelector('#categories_block')
-    const cat = document.querySelectorAll('.category_item')
-    cat.forEach(item => categories.removeChild(item))
-};
-
-const removeEventListeners = () => {
-    const getCategories = document.querySelectorAll('.category_item');
-    getCategories.forEach(category => {
-        category.removeEventListener('click', populateProductList);
-    });
-
-    const allProducts = document.querySelectorAll('.product_item');
-    allProducts.forEach(product => {
-        product.removeEventListener('click', populateProductInfo);
-    });
-
-    const btnBuy = document.querySelector('.buy_product');
-    btnBuy.removeEventListener('click', buyProduct);
+    document.querySelectorAll('.product_information').forEach(item => item.remove())
 };
