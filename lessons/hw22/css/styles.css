@@ -1,0 +1,9 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#main_content {
+    display: flex;
+    justify-content: center;
+}
