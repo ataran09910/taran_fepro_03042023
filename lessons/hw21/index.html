@@ -8,19 +8,139 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
+<!-- 
+    Buy =>>
+
+    3. Layout all information about the product and delivery. 
+ -->
+
 <body>
     <h1>Home Work 21. Emarket example</h1>
     <div class="emarket_root">
-        <div id="categories_block">
-            <div class="block_header">Categories</div>
+        <div class="product_details_block">
+            <div id="categories_block">
+                <div class="block_header">Categories</div>
+            </div>
+            <div id="product_list_block">
+                <div class="block_header">List of products</div>
+            </div>
+            <div id="product_info_block">
+                <div class="block_header">Product information</div>
+            </div>
         </div>
-        <div id="product_list_block">
-            <div class="block_header">List of products</div>
+        <div class="delivery_form_container invisible">
+            <form class="delivery_form" action="/sendFormData">
+                <div class="form_title">
+                    <h3>Select your delivery details</h3>
+                </div>
+                <!-- Start of personal info block -->
+                <div class="personalInfo_block">
+                    <div class="to_validate">
+                        <label for="first_name">First Name</label>
+                        <input required minLength="2" letters type="text" name="f_name" class="personal_data first_name"
+                            placeholder="Fill Your first name">
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="to_validate">
+                        <label for="last_name">Last Name</label>
+                        <input required minLength="2" letters type="text" name="l_name" class="personal_data last_name"
+                            placeholder="Fill Your last name">
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="to_validate">
+                        <label for="middle_name">Middle Name</label>
+                        <input minLength="2" letters type="text" name="m_name" class="personal_data middle_name"
+                            placeholder="Fill Your middle name">
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <!-- Start of cities drop down block -->
+                <div class="citiesDropdown_block">
+                    <div class="to_validate">
+                        <label for="dropdownCities">Select you city for delivery</label>
+                        <select required name="city" class="dropdownCities">
+                            <option value=""></option>
+                            <option value="Odesa">Odesa</option>
+                            <option value="Kyiv">Kyiv</option>
+                            <option value="Kherson">Kherson</option>
+                            <option value="Dnepr">Dnepr</option>
+                        </select>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <!-- Start of payment nethod block -->
+                <div class="payMethods_block">
+                    <div class="to_validate">
+                        <label for="payment_method">Select payment method</label>
+                        <div>
+                            <input selected type="radio" id="payment_method" name="payment_method" class="online"
+                                value="Online">
+                            <span for="online">Pay online</span>
+                            <input selected type="radio" id="payment_method" name="payment_method" class="by_cash"
+                                value="Cash">
+                            <span for="by_cash">Pay cash</span>
+                        </div>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <!-- Start of Quantity block -->
+                <div class="quantity_block">
+                    <div class="to_validate">
+                        <label for="quantity_label">Quantity</label>
+                        <input required numeric type="text" name="quantity_of" class="quantity">
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <!-- Start of Quantity block -->
+                <div class="comments_block">
+                    <div class="to_validate">
+                        <label for="comments_label">Comments</label>
+                        <textarea customMaxLength="10" name="comments" class="comments" cols="30" rows="10"></textarea>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <!-- Submit form -->
+                <div class="send_delivery_block">
+                    <button type="submit">Confirm and Continue</button>
+                </div>
+            </form>
         </div>
-        <div id="product_info_block">
-            <div class="block_header">Product information</div>
+        <div class="order_summary_container _parent_container invisible">
+            <div class="header">
+                <h3>Order details</h3>
+            </div>
+            <div class="cart_container _child_container">
+                <div class="product_info">Product:
+                    <span class="articul"></span>
+                    <span class="category"></span>
+                    <span class="title"></span>
+                    <span class="description"></span>
+                    <span class="quantity_order"></span>
+                </div>
+            </div>
+            <div class="devlivery_container _child_container">
+                <div class="delivery_info">
+                    <div class="personal_data">Buyer:
+                        <span class="f_name"></span>
+                        <span class="l_name"></span>
+                        <span class="m_name"></span>
+                    </div>
+                    <div class="delivered_to">Delivery:
+                        <span class="city"></span>
+                    </div>
+                    <div class="other">Payment:
+                        <span class="payment"></span>
+                    </div>
+                    <div class="comments_div">Comment:
+                        <span class="comments_order"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-<script defer src="js/emarket.js"></script>
+<script defer type="module" src="js/emarket.js"></script>
+
 </html>
