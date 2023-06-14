@@ -1,40 +1,40 @@
+const validationRules = [
+	{
+		attribute: 'selected',
+		isValid: radioInput => radioInput.checked,
+		errMsg: (label) => `Please ${label.textContent.toLowerCase()}`,
+		targetErrEl: (targetErrEl) => Boolean(targetErrEl.parentElement.querySelector('label[for="payment_method"]'))
+	},
+	{
+		attribute: 'letters',
+		isValid: input => /^[a-zA-Z]+$/.test(input.value.trim()),
+		errMsg: (input, label) => `${label.textContent} should contains only letters`
+	},
+	{
+		attribute: 'minLength',
+		isValid: input => input.value.length >= parseInt(input.minLength),
+		errMsg: (input, label) => `${label.textContent} should have more then ${input.minLength} chars`
+	},
+	{
+		attribute: 'customMaxLength',
+		isValid: input => input.value.length < parseInt(input.getAttribute('customMaxLength')),
+		errMsg: (input, label) => `${label.textContent} should have less then ${input.getAttribute('customMaxLength')} chars`
+	},
+	{
+		attribute: 'numeric',
+		isValid: input => /^\d+$/.test(input.value.trim()),
+		errMsg: (input, label) => `${label.textContent} should contains only number (1 - 9)`
+	},
+	{
+		attribute: 'required',
+		isValid: input => input.value.trim() !== '',
+		errMsg: (input, label) => `${label.textContent} is required`
+	}
+]
+
 export const validateForm = (formSelector) => {
 	return new Promise((resolve) => {
 		const formBlock = document.querySelector(formSelector)
-
-		const validationRules = [
-			{
-				attribute: 'selected',
-				isValid: radioInput => radioInput.checked,
-				errMsg: (label) => `Please ${label.textContent.toLowerCase()}`,
-				targetErrEl: (targetErrEl) => Boolean(targetErrEl.parentElement.querySelector('label[for="payment_method"]'))
-			},
-			{
-				attribute: 'letters',
-				isValid: input => /^[a-zA-Z]+$/.test(input.value.trim()),
-				errMsg: (input, label) => `${label.textContent} should contains only letters`
-			},
-			{
-				attribute: 'minLength',
-				isValid: input => input.value.length >= parseInt(input.minLength),
-				errMsg: (input, label) => `${label.textContent} should have more then ${input.minLength} chars`
-			},
-			{
-				attribute: 'customMaxLength',
-				isValid: input => input.value.length < parseInt(input.getAttribute('customMaxLength')),
-				errMsg: (input, label) => `${label.textContent} should have less then ${input.getAttribute('customMaxLength')} chars`
-			},
-			{
-				attribute: 'numeric',
-				isValid: input => /^\d+$/.test(input.value.trim()),
-				errMsg: (input, label) => `${label.textContent} should contains only number (1 - 9)`
-			},
-			{
-				attribute: 'required',
-				isValid: input => input.value.trim() !== '',
-				errMsg: (input, label) => `${label.textContent} is required`
-			}
-		]
 
 		const validateFields = blockGroup => {
 			const label = blockGroup.querySelector('label')
@@ -86,7 +86,7 @@ export const validateForm = (formSelector) => {
 		}
 
 		formBlock.setAttribute('novalidate', '')
-		
+
 		formBlock.addEventListener('submit', event => {
 			event.preventDefault()
 			const isFormValid = validateAll(formBlock)
@@ -94,7 +94,5 @@ export const validateForm = (formSelector) => {
 				resolve(formBlock)
 			}
 		})
-
-		return formBlock
 	});
 }

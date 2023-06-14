@@ -1,6 +1,6 @@
 import { dataStore } from './dataStore.js'
 import { clearOrderForm, populateOrderDetails } from './order.js'
-import { disableElement, makePageElementVisible } from './utils.js'
+import { disableElement, makePageElementNotVisible, makePageElementVisible } from './utils.js'
 import { validateForm } from './validation.js'
 
 let cart = []
@@ -58,6 +58,8 @@ function deleteProductInfo() {
 	document.querySelectorAll('.product_item').forEach(item => item.remove())
 	document.querySelectorAll('.product_information').forEach(item => item.remove())
 	clearOrderForm()
+	makePageElementNotVisible(deliveryDetails)
+	makePageElementNotVisible(orderDetails)
 }
 
 const populateCategories = () => {
@@ -91,24 +93,21 @@ function runtimeSession() {
 	cart = []
 	deleteProductInfo()
 	populateCategories()
-}
 
-const formBlock = validateForm('.delivery_form')
-	.then((formBlock) => {
-		const deliveryDataObject = sendDeliveryData(formBlock)
-		console.log('Delivery object model: ', deliveryDataObject)
-		return Promise.resolve(deliveryDataObject)
-	})
-	.then((deliveryDataObject) => {
-		populateOrderDetails(deliveryDataObject, cart)
-	})
-	.then(() => {
-		makePageElementVisible(orderDetails)
-	})
-	.then(() => {
-		console.log('Promise chain resolved. Starting session again in 5 seconds...')
-		setTimeout(() => runtimeSession(), 5000);
-	})
-	.catch(error => console.error('Promise chain error:', error))
+	validateForm('.delivery_form')
+		.then((formBlock) => {
+			const deliveryDataObject = sendDeliveryData(formBlock)
+			console.log('Delivery object model: ', deliveryDataObject)
+			return Promise.resolve(deliveryDataObject)
+		})
+		.then((deliveryDataObject) => populateOrderDetails(deliveryDataObject, cart))
+		.then(() => makePageElementVisible(orderDetails))
+		.then(() => {
+			const reloadTimeout = 10000
+			console.log(`Promise chain resolved. Starting session again in ${reloadTimeout} seconds...`)
+			setTimeout(() => runtimeSession(), reloadTimeout);
+		})
+		.catch(error => console.error('Promise chain error:', error))
+}
 
 runtimeSession()
