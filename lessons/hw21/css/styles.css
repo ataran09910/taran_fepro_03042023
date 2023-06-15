@@ -9,9 +9,44 @@ h1 {
     text-align: center;
 }
 
+._parent_container {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid blue;
+    width: calc(100%/2);
+    margin: 10px;
+    align-items: center;
+}
+
+._child_container {
+    display: inherit;
+    margin: 10px;
+}
+
+input[type=text] {
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: aliceblue;
+}
+
+textarea{
+    background: none;
+    outline: none;
+    color: aliceblue;
+}
+
 .emarket_root {
     display: flex;
+    flex-direction: column;
     margin: 20px;
+    align-items: center;
+}
+
+.product_details_block {
+    display: inherit;
 }
 
 #categories_block,
@@ -39,15 +74,62 @@ h1 {
 }
 
 .product_information {
+    display: flex;
+    padding: 10px;
+    margin: 20px;
     background-color: rgb(102, 102, 102);
-    text-align: center;
-    margin: 21px;
-    padding: 20px;
     border: 1px solid black;
 }
 
-.buy_product {
-    box-shadow: 5px 5px rgb(30, 30, 30);
-    color: rgb(215, 215, 215);
+button {
+    padding: 10px;
+    margin-top: 10%;
+    color: black;
     font-weight: bolder;
+}
+
+/* disable selected category styles */
+
+.disabled {
+    background-color: #8d8d8d;
+    color: linen;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.delivery_form_container.invisible, 
+.order_summary_container.invisible {
+    display: none;
+}
+
+/* Delivery form */
+
+.delivery_form_container {
+    display: inherit;
+    padding: 30px;
+    border: 2px solid rgb(173, 173, 173);
+    margin-top: 10px;
+    text-align: center;
+}
+
+.personalInfo_block,
+.citiesDropdown_block,
+.payMethods_block,
+.quantity_block,
+.comments_block,
+.error {
+    margin: 10px;
+}
+
+.quantity_block,
+.personalInfo_block,
+.citiesDropdown_block {
+    text-align: left;
+}
+
+/* error styles */
+.error {
+    margin: 5px;
+    color: red;
+    font-weight: lighter;
 }

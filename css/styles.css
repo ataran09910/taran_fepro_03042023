@@ -11,6 +11,13 @@ h1 {
     text-align: center;
 }
 
+.disabled {
+    background-color: #8d8d8d;
+    color: linen;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .content_root {
     display: flex;
     flex-wrap: wrap;
