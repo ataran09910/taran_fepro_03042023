@@ -1,0 +1,33 @@
+body {
+    background-color: #212124;
+    color: rgb(215, 215, 215);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+._container {
+    display: flex;
+    justify-content: center;
+    /* text-align: center; */
+}
+
+._parentContainer {
+    display: inherit;
+    flex-direction: column;
+    /* width: 100%; */
+    border: 3px solid blue;
+    margin: 10px;
+    align-items: center;
+}
+
+._childContainer {
+    display: inherit;
+    margin: 10px;
+}
+
