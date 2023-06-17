@@ -1,0 +1,50 @@
+body {
+    background-color: #212124;
+    color: rgb(215, 215, 215);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    margin: 20px;
+    width: 200px;
+}
+
+button {
+    margin: 20px;
+    width: 200px;
+}
+
+li {
+    margin: 10px;
+}
+
+.error {
+    margin: 5px;
+    color: red;
+    font-weight: bold;
+}
+
+._container {
+    display: flex;
+    justify-content: center;
+}
+
+._parentContainer {
+    display: inherit;
+    border: 3px solid blue;
+    margin: 10px;
+}
+
+._childContainer {
+    display: inherit;
+    flex-direction: column;
+    margin: 10px;
+}
+
