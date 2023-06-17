@@ -21,6 +21,7 @@ const getCommentsByPostId = (comments, postId) => Array.from(JSON.parse(comments
 
 const findPost = () => {
 	const inputElement = document.querySelector('.postId')
+	const errorElement = document.querySelector('.postContent .error')
 	const inputValue = Number(inputElement.value)
 
 	if (!inputValue) {
@@ -31,9 +32,12 @@ const findPost = () => {
 		.then((posts) => {
 			const postContentFromResponse = getPostById(posts, inputValue)
 			if (!postContentFromResponse) {
-				throw new Error(`Cannot find post with id: ${inputValue}`)
+				const errMsg = `Post with id: "${inputValue}" not found`
+				errorElement.textContent = errMsg
+				throw new Error(errMsg)
 			}
-
+			errorElement.textContent = ''
+			populatePostData(postContentFromResponse)
 			postObject = postContentFromResponse
 		})
 		.catch((error) => console.log(error))
@@ -42,15 +46,28 @@ const findPost = () => {
 const findPostBtn = document.querySelector('.find')
 findPostBtn.addEventListener('click', findPost)
 
+const populatePostData = (postDataObject) => {
+	const id = document.querySelector('.post .id')
+	const userId = document.querySelector('.post .userId')
+	const title = document.querySelector('.post .title')
+	const postBody = document.querySelector('.post .postBody')
+
+	id.innerText = `ID: ${postDataObject.id}`
+	userId.innerText = `UserID: ${postDataObject.userId}`
+	title.innerText = `Title: ${postDataObject.title}`
+	postBody.innerText = `Body: ${postDataObject.body}`
+}
+
 const showComments = () => {
 	const postId = postObject.id
 
 	sendApiRequest('/comments', postId)
 		.then((comments) => {
-			const comments = getCommentsByPostId(comments, postId)
+			const allCommentsContent = getCommentsByPostId(comments, postId)
 		})
 		.catch((error) => console.log(error))
 }
 
 const showCommentsBtn = document.querySelector('.showComments')
 showCommentsBtn.addEventListener('click', showComments)
+

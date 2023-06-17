@@ -11,23 +11,36 @@ h1 {
     text-align: center;
 }
 
+input {
+    margin: 20px;
+    width: 200px;
+}
+
+button {
+    margin: 20px;
+    width: 200px;
+}
+
+.error {
+    margin: 5px;
+    color: red;
+    font-weight: lighter;
+}
+
 ._container {
     display: flex;
     justify-content: center;
-    /* text-align: center; */
 }
 
 ._parentContainer {
     display: inherit;
-    flex-direction: column;
-    /* width: 100%; */
     border: 3px solid blue;
     margin: 10px;
-    align-items: center;
 }
 
 ._childContainer {
     display: inherit;
+    flex-direction: column;
     margin: 10px;
 }
 
