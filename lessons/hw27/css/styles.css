@@ -1,0 +1,53 @@
+body {
+    background-color: #212124;
+    color: rgb(215, 215, 215);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+._container {
+    display: flex;
+    justify-content: center;
+}
+
+._parentContainer {
+    display: inherit;
+    border: 3px solid blue;
+    margin: 10px;
+    align-items: center;
+    width: 400px;
+    /* flex-wrap: wrap; */
+}
+
+._childContainer {
+    display: inherit;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.weatherIcon {
+    height: 100px;
+    width: 100px;
+
+}
+
+.item {
+    margin: 10px;
+    width: 70px;
+    text-align: center;
+    align-items: center;
+}
+
+.icons {
+    width: 20px;
+    height: 20px;
+}
