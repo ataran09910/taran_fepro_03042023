@@ -1,20 +1,6 @@
-const baseUrl = 'https://jsonplaceholder.typicode.com'
-let postObject = {}
+import { sendApiRequest } from "./apiClient.js"
 
-const sendApiRequest = (path) => {
-	return new Promise((resolve, reject) => {
-		const request = new XMLHttpRequest()
-		request.open('GET', `${baseUrl}${path}`)
-		request.onload = () => {
-			if (request.status === 200) {
-				resolve(request.response)
-			} else {
-				reject(new Error(`Failed to send request due to error ${request.status}`))
-			}
-		}
-		request.send()
-	})
-}
+let postObject = {}
 
 const getPostById = (posts, id) => Array.from(JSON.parse(posts)).find(post => post.id === id)
 const getCommentsByPostId = (comments, postId) => Array.from(JSON.parse(comments)).filter(comment => comment.postId === postId)
@@ -22,19 +8,21 @@ const getCommentsByPostId = (comments, postId) => Array.from(JSON.parse(comments
 const findPost = () => {
 	const inputElement = document.querySelector('.postId')
 	const errorElement = document.querySelector('.postContent .error')
-	const inputValue = Number(inputElement.value)
+	const input = Number(inputElement.value)
 
-	if (!inputValue) {
-		throw new Error('Input value should be a number')
+	if (!input) {
+		const errMsg = 'Input value should be a number'
+		errorElement.textContent = errMsg
+		throw new Error(errMsg)
 	}
 
-	sendApiRequest('/posts', inputValue)
+	sendApiRequest('/posts', input)
 		.then((posts) => {
-			const postContentFromResponse = getPostById(posts, inputValue)
+			const postContentFromResponse = getPostById(posts, input)
 			if (!postContentFromResponse) {
-				const errMsg = `Post with id: "${inputValue}" not found`
+				const errMsg = `Post with id: "${input}" not found`
 				errorElement.textContent = errMsg
-				throw new Error(errMsg)
+				return Promise.reject(new Error(errMsg))
 			}
 			errorElement.textContent = ''
 			populatePostData(postContentFromResponse)
@@ -64,6 +52,13 @@ const showComments = () => {
 	sendApiRequest('/comments', postId)
 		.then((comments) => {
 			const allCommentsContent = getCommentsByPostId(comments, postId)
+			const commentListParent = document.querySelector('.commentsList')
+
+			allCommentsContent.forEach(comment => {
+				const li = document.createElement('li')
+				li.innerText = `FROM: ${comment.email}. BODY: ${comment.body}`
+				commentListParent.appendChild(li)
+			})
 		})
 		.catch((error) => console.log(error))
 }

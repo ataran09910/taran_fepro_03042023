@@ -21,10 +21,14 @@ button {
     width: 200px;
 }
 
+li {
+    margin: 10px;
+}
+
 .error {
     margin: 5px;
     color: red;
-    font-weight: lighter;
+    font-weight: bold;
 }
 
 ._container {
